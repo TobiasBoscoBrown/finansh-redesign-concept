@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Finansh — Borrowing decisions deserve better advice</title>
+<meta name="description" content="Finansh helps homeowners and businesses make smarter borrowing decisions. Home loans, balance transfers, and business finance, advised by seasoned ex-bankers. A premium concept by BuildMyTribe." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,18..72,400;0,18..72,500;1,18..72,400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0C0C16;
+    --ink-2:#15151F;
+    --paper:#FFFFFF;
+    --mist:#F6F6FB;
+    --mist-2:#EFEFF6;
+    --muted:#5C5C6E;
+    --muted-2:#8A8A99;
+    --line:rgba(12,12,22,0.08);
+    --line-2:rgba(12,12,22,0.12);
+    --violet:#5B4BE6;
+    --violet-2:#8A7CFF;
+    --lilac:#ECE9FE;
+    --green:#0E8F5E;
+    --red:#D2443B;
+    --radius:18px;
+    --radius-sm:12px;
+    --maxw:1180px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .eyebrow{
+    font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--violet);display:inline-flex;align-items:center;gap:9px;
+  }
+  .eyebrow::before{content:"";width:18px;height:1.5px;background:var(--violet);display:inline-block;border-radius:2px}
+  h1,h2,h3{letter-spacing:-0.025em;line-height:1.06;font-weight:600}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    height:46px;padding:0 22px;border-radius:999px;font-weight:560;font-size:15px;
+    transition:transform .25s var(--ease),background .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease);
+    cursor:pointer;border:1px solid transparent;white-space:nowrap;
+  }
+  .btn-primary{background:var(--ink);color:#fff}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(12,12,22,.5)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-2)}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .btn-violet{background:var(--violet);color:#fff}
+  .btn-violet:hover{transform:translateY(-2px);box-shadow:0 16px 34px -12px rgba(91,75,230,.55)}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:60;transition:box-shadow .3s var(--ease),background .3s var(--ease)}
+  header.scrolled{background:rgba(255,255,255,.82);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:2px;font-weight:700;font-size:23px;letter-spacing:-.04em;color:var(--ink)}
+  .brand .dot{width:7px;height:7px;border-radius:50%;background:var(--violet);transform:translateY(-9px) translateX(1px)}
+  .nav-links{display:flex;align-items:center;gap:34px}
+  .nav-links a{font-size:14.5px;color:var(--muted);font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+  .nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:6px}
+  .nav-toggle span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px;transition:.3s}
+
+  /* HERO */
+  .hero{position:relative;padding:78px 0 90px;overflow:hidden}
+  .hero-mesh{position:absolute;inset:-20% -10% auto -10%;height:680px;z-index:-1;
+    background:
+      radial-gradient(40% 50% at 18% 20%,rgba(138,124,255,.22),transparent 70%),
+      radial-gradient(36% 46% at 82% 8%,rgba(91,75,230,.16),transparent 70%),
+      radial-gradient(50% 50% at 60% 60%,rgba(236,233,254,.6),transparent 70%);
+    filter:blur(8px);animation:drift 18s ease-in-out infinite alternate}
+  @keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-20px,18px,0) scale(1.06)}}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
+  .hero h1{font-size:clamp(38px,5vw,62px);margin:22px 0 0}
+  .hero h1 .accent{background:linear-gradient(100deg,var(--violet),var(--violet-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lede{font-size:19px;color:var(--muted);margin-top:22px;max-width:36ch;line-height:1.58}
+  .hero-actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+  .hero-trust{display:flex;gap:22px;margin-top:34px;flex-wrap:wrap;align-items:center}
+  .hero-trust span{font-size:13.5px;color:var(--muted-2);display:flex;align-items:center;gap:8px;font-weight:500}
+  .hero-trust span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--violet);opacity:.7}
+
+  /* Health card */
+  .hero-visual{position:relative}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 30px 70px -40px rgba(12,12,22,.4)}
+  .health-card{padding:24px}
+  .hc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .hc-pill{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--violet);background:var(--lilac);padding:6px 12px;border-radius:999px}
+  .hc-label{font-size:13px;color:var(--muted-2);font-weight:500}
+  .hc-amount{font-size:34px;font-weight:700;letter-spacing:-.03em;margin:2px 0 4px}
+  .hc-amount .rupee{color:var(--muted-2);font-weight:500}
+  .hc-sub{font-size:14px;color:var(--muted)}
+  .hc-sub b.lose{color:var(--red)}
+  .hc-bars{margin-top:20px;display:flex;flex-direction:column;gap:12px}
+  .hc-row{display:flex;align-items:center;gap:12px}
+  .hc-row .nm{width:78px;font-size:12.5px;color:var(--muted);font-weight:500}
+  .hc-track{flex:1;height:8px;background:var(--mist-2);border-radius:999px;overflow:hidden}
+  .hc-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--violet),var(--violet-2));transform-origin:left;transform:scaleX(0);transition:transform 1.1s var(--ease)}
+  .hc-row .rt{width:48px;text-align:right;font-size:12.5px;font-weight:600}
+  .hc-row.best .rt{color:var(--green)}
+  .hc-cta{margin-top:22px;width:100%;height:44px;border-radius:12px;background:var(--ink);color:#fff;border:0;font-weight:560;font-size:14.5px;cursor:pointer;transition:transform .2s var(--ease)}
+  .hc-cta:hover{transform:translateY(-2px)}
+  .float-chip{position:absolute;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 40px -24px rgba(12,12,22,.45);padding:12px 15px;display:flex;align-items:center;gap:11px;font-size:13px;font-weight:560}
+  .float-chip .ic{width:30px;height:30px;border-radius:9px;background:var(--lilac);display:grid;place-items:center;color:var(--violet)}
+  .chip-a{top:-22px;right:-14px;animation:floaty 6s ease-in-out infinite}
+  .chip-b{bottom:-22px;left:-20px;animation:floaty 7s ease-in-out infinite .8s}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+  /* TRUST STRIP */
+  .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--mist)}
+  .strip .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:22px;padding-bottom:22px;flex-wrap:wrap}
+  .strip-item{display:flex;align-items:center;gap:11px;font-size:14px;color:var(--ink);font-weight:540}
+  .strip-item svg{color:var(--violet);flex-shrink:0}
+
+  /* SECTION */
+  section.block{padding:104px 0}
+  .sec-head{max-width:660px}
+  .sec-head h2{font-size:clamp(30px,3.5vw,44px);margin-top:16px}
+  .sec-head p{color:var(--muted);font-size:18px;margin-top:18px;line-height:1.6}
+  .center{margin-left:auto;margin-right:auto;text-align:center}
+  .center .eyebrow{justify-content:center}
+
+  /* PRACTICES */
+  .practice-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:54px}
+  .practice{position:relative;border:1px solid var(--line);border-radius:var(--radius);padding:34px;background:#fff;overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease)}
+  .practice::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 100% 0,rgba(138,124,255,.10),transparent 55%);opacity:0;transition:opacity .35s var(--ease)}
+  .practice:hover{transform:translateY(-4px);box-shadow:0 30px 60px -40px rgba(12,12,22,.4);border-color:var(--line-2)}
+  .practice:hover::after{opacity:1}
+  .practice .tag{font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2)}
+  .practice h3{font-size:26px;margin:14px 0 10px}
+  .practice .desc{color:var(--muted);font-size:15.5px;max-width:42ch}
+  .svc-list{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:12px 18px}
+  .svc{display:flex;align-items:center;gap:10px;font-size:14.5px;color:var(--ink);font-weight:500}
+  .svc svg{color:var(--violet);flex-shrink:0}
+  .practice .more{margin-top:26px;display:inline-flex;align-items:center;gap:7px;font-size:14.5px;font-weight:600;color:var(--violet)}
+  .practice .more svg{transition:transform .25s var(--ease)}
+  .practice:hover .more svg{transform:translateX(4px)}
+
+  /* STEPS */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:54px}
+  .step{padding:32px;border-radius:var(--radius);background:var(--mist);border:1px solid transparent;transition:.35s var(--ease)}
+  .step:hover{background:#fff;border-color:var(--line);box-shadow:0 24px 50px -38px rgba(12,12,22,.4)}
+  .step .ico{width:50px;height:50px;border-radius:14px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;color:var(--violet);margin-bottom:22px}
+  .step h3{font-size:20px;margin-bottom:9px}
+  .step p{color:var(--muted);font-size:15px}
+  .step .n{font-size:13px;font-weight:700;color:var(--violet-2);letter-spacing:.1em}
+
+  /* FEATURE / FinBo */
+  .feature{background:var(--ink);color:#fff;border-radius:28px;overflow:hidden;position:relative}
+  .feature-inner{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;padding:60px}
+  .feature-mesh{position:absolute;inset:auto -10% -40% auto;width:480px;height:480px;border-radius:50%;
+    background:radial-gradient(circle,rgba(138,124,255,.35),transparent 65%);filter:blur(20px)}
+  .feature .eyebrow{color:var(--violet-2)}
+  .feature .eyebrow::before{background:var(--violet-2)}
+  .feature h2{font-size:clamp(28px,3.4vw,40px);margin-top:16px;color:#fff}
+  .feature p.sub{color:rgba(255,255,255,.66);font-size:17px;margin-top:18px;line-height:1.6}
+  .feature ul{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:14px}
+  .feature li{display:flex;align-items:flex-start;gap:12px;font-size:15.5px;color:rgba(255,255,255,.9)}
+  .feature li svg{color:var(--violet-2);flex-shrink:0;margin-top:3px}
+  /* chat mock */
+  .chat{background:#1C1C28;border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:22px;position:relative;z-index:2}
+  .chat-head{display:flex;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:18px}
+  .chat-av{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--violet),var(--violet-2));display:grid;place-items:center;font-weight:700;color:#fff}
+  .chat-head .nm{font-weight:600;font-size:15px}
+  .chat-head .st{font-size:12px;color:rgba(255,255,255,.45)}
+  .bubble{background:#262633;border-radius:14px;padding:13px 15px;font-size:14px;color:rgba(255,255,255,.9);margin-bottom:11px;max-width:90%}
+  .bubble.me{background:var(--violet);color:#fff;margin-left:auto}
+  .bubble b{color:#fff}
+  .typing{display:flex;gap:5px;padding:6px 2px}
+  .typing i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.4);animation:blink 1.4s infinite}
+  .typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+
+  /* EXCLUSIVE BENEFITS */
+  .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:54px}
+  .benefit{padding:30px;border:1px solid var(--line);border-radius:var(--radius);transition:.35s var(--ease)}
+  .benefit:hover{transform:translateY(-4px);box-shadow:0 26px 54px -40px rgba(12,12,22,.4)}
+  .benefit .bi{width:46px;height:46px;border-radius:13px;background:var(--lilac);display:grid;place-items:center;color:var(--violet);margin-bottom:20px}
+  .benefit h3{font-size:18.5px;margin-bottom:8px}
+  .benefit p{color:var(--muted);font-size:14.5px}
+
+  /* INSIGHTS */
+  .insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:54px}
+  .article{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;transition:.35s var(--ease);display:flex;flex-direction:column}
+  .article:hover{transform:translateY(-5px);box-shadow:0 30px 60px -42px rgba(12,12,22,.45)}
+  .article .thumb{height:158px;position:relative}
+  .t1{background:linear-gradient(135deg,#1C1C28,#3A2F7A)}
+  .t2{background:linear-gradient(135deg,#5B4BE6,#8A7CFF)}
+  .t3{background:linear-gradient(135deg,#0E8F5E,#3FB98A)}
+  .thumb .topo{position:absolute;inset:0;opacity:.5;background-image:radial-gradient(rgba(255,255,255,.18) 1px,transparent 1px);background-size:16px 16px}
+  .article .body{padding:24px;flex:1;display:flex;flex-direction:column}
+  .article .cat{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--violet)}
+  .article h3{font-family:'Newsreader',Georgia,serif;font-weight:500;font-size:21px;letter-spacing:-.01em;line-height:1.25;margin:12px 0 10px}
+  .article p{color:var(--muted);font-size:14px;flex:1}
+  .article .meta{margin-top:18px;font-size:13px;color:var(--muted-2);display:flex;gap:12px}
+
+  /* CTA BAND */
+  .cta-band{position:relative;border-radius:28px;overflow:hidden;background:linear-gradient(120deg,#15151F,#2A2370);padding:72px 56px;text-align:center}
+  .cta-band .glow{position:absolute;inset:0;background:radial-gradient(50% 120% at 50% 0,rgba(138,124,255,.4),transparent 60%)}
+  .cta-band > *{position:relative;z-index:2}
+  .cta-band h2{color:#fff;font-size:clamp(30px,3.6vw,46px)}
+  .cta-band p{color:rgba(255,255,255,.7);font-size:18px;margin:18px auto 0;max-width:48ch}
+  .cta-actions{display:flex;gap:14px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:70px 0 40px;background:var(--mist)}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:40px}
+  .foot-brand p{color:var(--muted);font-size:14px;margin-top:16px;max-width:30ch;line-height:1.6}
+  .foot-col h4{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-2);margin-bottom:18px}
+  .foot-col a{display:block;color:var(--muted);font-size:14.5px;margin-bottom:12px;transition:color .2s}
+  .foot-col a:hover{color:var(--ink)}
+  .foot-contact p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:14px}
+  .foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:54px;padding-top:26px;border-top:1px solid var(--line);flex-wrap:wrap}
+  .foot-bottom p{font-size:13px;color:var(--muted-2)}
+  .disclaimer{font-size:12px;color:var(--muted-2);margin-top:22px;line-height:1.6;max-width:90ch}
+
+  /* concept ribbon */
+  .concept{position:fixed;bottom:16px;right:16px;z-index:80;background:rgba(12,12,22,.9);color:#fff;backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:9px 15px;font-size:12px;font-weight:540;display:flex;align-items:center;gap:9px;
+    box-shadow:0 12px 30px -14px rgba(0,0,0,.6);transition:opacity .3s}
+  .concept .pd{width:7px;height:7px;border-radius:50%;background:var(--violet-2)}
+  .concept a{color:var(--violet-2);font-weight:600}
+
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+
+  /* RESPONSIVE */
+  @media(max-width:920px){
+    .hero-grid,.feature-inner{grid-template-columns:1fr;gap:40px}
+    .practice-grid,.steps,.benefits,.insights-grid{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
+    .feature-inner{padding:40px}
+    .hero-visual{max-width:440px;margin:0 auto;width:100%}
+  }
+  @media(max-width:680px){
+    .wrap{padding:0 20px}
+    .nav-links,.nav-cta .btn-ghost{display:none}
+    .nav-toggle{display:block}
+    .nav-links.open{display:flex;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:#fff;
+      padding:20px 24px;gap:18px;border-bottom:1px solid var(--line);box-shadow:0 20px 40px -24px rgba(0,0,0,.25)}
+    .nav-links.open a{font-size:16px}
+    section.block{padding:74px 0}
+    .hero{padding:48px 0 64px}
+    .svc-list{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr}
+    .cta-band{padding:54px 28px}
+    .feature-inner{padding:30px}
+    .practice,.benefit,.step{padding:26px}
+    .strip .wrap{gap:14px}
+    .strip-item{font-size:13px}
+    .concept{font-size:11px;padding:8px 12px}
+  }
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="#top" aria-label="Finansh home">finansh<span class="dot"></span></a>
+      <div class="nav-links" id="navlinks">
+        <a href="#personal">Personal Finance</a>
+        <a href="#business">Business Advisory</a>
+        <a href="#finbo">FinBo</a>
+        <a href="#insights">Insights</a>
+        <a href="#about">About</a>
+      </div>
+      <div class="nav-cta">
+        <a href="#finbo" class="btn btn-ghost">Sign in</a>
+        <a href="#cta" class="btn btn-primary">Talk to an expert</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-mesh"></div>
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow reveal">India's home loan and business finance experts</span>
+          <h1 class="reveal d1">Borrowing decisions deserve <span class="accent">better advice.</span></h1>
+          <p class="lede reveal d2">Finansh blends seasoned ex-banker judgement with smart technology, so homeowners and businesses borrow on better terms. Simpler, smarter, stress-free.</p>
+          <div class="hero-actions reveal d2">
+            <a href="#finbo" class="btn btn-violet">Check my home loan
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#business" class="btn btn-ghost">For business</a>
+          </div>
+          <div class="hero-trust reveal d3">
+            <span>Built by ex-bankers</span>
+            <span>Lowest rate guarantee</span>
+            <span>Zero cost to you</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal d2">
+          <div class="card health-card">
+            <div class="hc-top">
+              <span class="hc-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 6 4-14 2 8h6"/></svg>
+                Home Loan Health Check
+              </span>
+              <span class="hc-label">Live estimate</span>
+            </div>
+            <div class="hc-label">You could be over-paying</div>
+            <div class="hc-amount"><span class="rupee">₹</span>9.53<span style="font-size:18px;font-weight:600;color:var(--muted)"> lakhs</span></div>
+            <div class="hc-sub">in extra interest on your current loan. <b class="lose">Time to negotiate.</b></div>
+            <div class="hc-bars">
+              <div class="hc-row"><span class="nm">Your bank</span><span class="hc-track"><span class="hc-fill" data-w="94"></span></span><span class="rt">9.10%</span></div>
+              <div class="hc-row"><span class="nm">Lender B</span><span class="hc-track"><span class="hc-fill" data-w="72"></span></span><span class="rt">8.65%</span></div>
+              <div class="hc-row best"><span class="nm">Finansh match</span><span class="hc-track"><span class="hc-fill" data-w="58"></span></span><span class="rt">8.30%</span></div>
+            </div>
+            <button class="hc-cta">See my savings plan</button>
+          </div>
+          <div class="float-chip chip-a">
+            <span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            Matched in 3 minutes
+          </div>
+          <div class="float-chip chip-b">
+            <span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 7v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7l-8-5Z"/></svg></span>
+            Paperwork handled
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="strip">
+    <div class="wrap">
+      <div class="strip-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 7v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7l-8-5Z"/></svg>Lowest interest rate guarantee</div>
+      <div class="strip-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0 1 14 0M17 11l2 2 4-4"/></svg>Seasoned ex-banker advisors</div>
+      <div class="strip-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-6 9 6v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>Free doorstep fulfilment</div>
+      <div class="strip-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>No fee to you, ever</div>
+    </div>
+  </div>
+
+  <!-- PRACTICES -->
+  <section class="block" id="personal">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Two practices, one standard of advice</span>
+        <h2>Whether it is your first home or your next round of growth capital.</h2>
+        <p>Finansh operates across personal and business borrowing, with the same unbiased, ex-banker approach to structuring every decision.</p>
+      </div>
+      <div class="practice-grid">
+        <div class="practice reveal">
+          <span class="tag">Personal Finance</span>
+          <h3>Home loans, done right.</h3>
+          <p class="desc">Discover the right lender, optimise your rate, and let our team handle the negotiation and paperwork, delivered to your door.</p>
+          <div class="svc-list">
+            <div class="svc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>New Home Loans</div>
+            <div class="svc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Balance Transfers</div>
+            <div class="svc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Loan Against Property</div>
+            <div class="svc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>NRI Mortgages</div>
+          </div>
+          <a href="#finbo" class="more">Explore personal finance
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <div class="practice reveal d1" id="business">
+          <span class="tag">Business Advisory</span>
+          <h3>Capital, structured by ex-bankers.</h3>
+          <p class="desc">Free one-on-one consultations that clarify your funding needs and chart the course to the right bank finance for MSMEs and developers.</p>
+          <div class="svc-list">
+            <div class="svc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Debt Advisory</div>
+            <div class="svc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Working Capital</div>
+            <div class="svc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Project &amp; Machinery Finance</div>
+            <div class="svc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Capital Structuring</div>
+          </div>
+          <a href="#cta" class="more">Book a banking consultation
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="eyebrow">How we do it</span>
+        <h2>Three minutes to a smarter loan.</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+          <span class="n">01</span>
+          <h3>Simpler with FinBo</h3>
+          <p>Say goodbye to guesswork. FinBo matches your profile to India's top lenders and returns accurate, personalised quotes.</p>
+        </div>
+        <div class="step reveal d1">
+          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M22 11l-3 3-2-2"/></svg></div>
+          <span class="n">02</span>
+          <h3>Smarter with experts</h3>
+          <p>Connect with seasoned ex-bankers who optimise your application and secure the lowest possible rate on your terms.</p>
+        </div>
+        <div class="step reveal d2">
+          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-6 9 6v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
+          <span class="n">03</span>
+          <h3>Stress-free delivery</h3>
+          <p>We handle negotiation and paperwork end to end, then deliver your loan to your doorstep at no extra cost.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINBO FEATURE -->
+  <section class="block" id="finbo" style="padding-top:0">
+    <div class="wrap">
+      <div class="feature reveal">
+        <div class="feature-mesh"></div>
+        <div class="feature-inner">
+          <div>
+            <span class="eyebrow">Meet FinBo</span>
+            <h2>Your smart home loan assistant, on call anytime.</h2>
+            <p class="sub">FinBo runs a free health check on your existing loan, spots interest you should not be paying, and shows exactly where a better deal sits.</p>
+            <ul>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Detects potential savings on your current rate in seconds</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Hands you to a real ex-banker the moment it matters</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No jargon, no spam, no cost to check</li>
+            </ul>
+            <a href="#cta" class="btn btn-violet" style="margin-top:30px">Start a free health check
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+          <div class="chat">
+            <div class="chat-head">
+              <div class="chat-av">F</div>
+              <div><div class="nm">FinBo</div><div class="st">Smart Home Loan Assistant</div></div>
+            </div>
+            <div class="bubble">Hi, I am <b>FinBo.</b> I can help you find the best home loan, and check the health of your current one.</div>
+            <div class="bubble me">I already have a home loan at 9.10%.</div>
+            <div class="bubble">On a ₹60L loan over 20 years, you are losing about <b>₹9.53 lakhs</b> in extra interest. I found a match at <b>8.30%</b>. Shall I loop in an expert?</div>
+            <div class="typing"><i></i><i></i><i></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXCLUSIVE BENEFITS -->
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Finansh exclusive</span>
+        <h2>Benefits you only get when Finansh fulfils your loan.</h2>
+      </div>
+      <div class="benefits">
+        <div class="benefit reveal">
+          <div class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <h3>Lowest interest rate guarantee</h3>
+          <p>If a comparable lender quotes lower, we match it. Your rate is always the floor, never the ceiling.</p>
+        </div>
+        <div class="benefit reveal d1">
+          <div class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+          <h3>Up to ₹15,000 in credits</h3>
+          <p>Get home loan credits worth up to ₹15,000 when your loan is fulfilled through Finansh.</p>
+        </div>
+        <div class="benefit reveal d2">
+          <div class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+          <h3>Dedicated relationship manager</h3>
+          <p>One named ex-banker owns your case from first quote to final disbursal. No call centres.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIGHTS -->
+  <section class="block" id="insights" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Insights</span>
+        <h2>Borrowing, explained without the bank-speak.</h2>
+        <p>Clear, practical writing on rates, structuring and the decisions that quietly cost Indian borrowers lakhs.</p>
+      </div>
+      <div class="insights-grid">
+        <a href="#insights" class="article reveal">
+          <div class="thumb t1"><div class="topo"></div></div>
+          <div class="body">
+            <span class="cat">Home Loans</span>
+            <h3>The balance transfer maths most borrowers get wrong</h3>
+            <p>A 0.5% rate gap sounds small. Over twenty years it rarely is. Here is how to read the real number.</p>
+            <div class="meta"><span>6 min read</span><span>Rates</span></div>
+          </div>
+        </a>
+        <a href="#insights" class="article reveal d1">
+          <div class="thumb t2"><div class="topo"></div></div>
+          <div class="body">
+            <span class="cat">Business Advisory</span>
+            <h3>Working capital that does not choke your growth</h3>
+            <p>How MSMEs can structure facilities around cash cycles instead of fighting them every quarter.</p>
+            <div class="meta"><span>8 min read</span><span>MSME</span></div>
+          </div>
+        </a>
+        <a href="#insights" class="article reveal d2">
+          <div class="thumb t3"><div class="topo"></div></div>
+          <div class="body">
+            <span class="cat">NRI Mortgages</span>
+            <h3>Buying a home in India from abroad, step by step</h3>
+            <p>Documentation, repatriation and the rate traps NRIs hit most often, in one practical guide.</p>
+            <div class="meta"><span>7 min read</span><span>NRI</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="block" id="cta" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <div class="glow"></div>
+        <h2>The trusted advisor you always needed.</h2>
+        <p>Get a free health check on your current loan, or talk to a seasoned ex-banker about your next big borrowing decision. No cost, no obligation.</p>
+        <div class="cta-actions">
+          <a href="#top" class="btn btn-violet">Check my home loan</a>
+          <a href="#about" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.25)">Talk to the team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="about">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top">finansh<span class="dot"></span></a>
+        <p>Making finance simpler, smarter and stress-free. Built by seasoned ex-bankers in Pune, India.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Personal</h4>
+        <a href="#personal">New Home Loans</a>
+        <a href="#personal">Balance Transfer</a>
+        <a href="#personal">Loan Against Property</a>
+        <a href="#personal">NRI Mortgages</a>
+      </div>
+      <div class="foot-col">
+        <h4>Business</h4>
+        <a href="#business">Debt Advisory</a>
+        <a href="#business">Working Capital</a>
+        <a href="#business">Project Finance</a>
+        <a href="#business">Capital Structuring</a>
+      </div>
+      <div class="foot-col foot-contact">
+        <h4>Talk to us</h4>
+        <p>101, The Daftar, Silver Oak Park,<br/>Aundh, Pune 411007</p>
+        <p>grievance@finansh.in<br/>+91 87674 11297</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 Finansh. Making finance simpler, smarter, stress-free.</p>
+      <p>Privacy · Terms · Grievance Redressal</p>
+    </div>
+    <p class="disclaimer">Design concept created by BuildMyTribe as an unsolicited demonstration for Finansh. This is not an official Finansh website and is not affiliated with or endorsed by Finansh. Brand name, copy themes and contact details are drawn from finansh.in and used only to illustrate a proposed redesign. The figures shown in product mock-ups are illustrative examples, not quotes.</p>
+  </div>
+</footer>
+
+<div class="concept">
+  <span class="pd"></span>
+  Concept redesign by <a href="https://buildmytribe.io" target="_blank" rel="noopener">BuildMyTribe</a>
+</div>
+
+<script>
+  // sticky header shadow
+  const hdr=document.getElementById('hdr');
+  const onScroll=()=>{hdr.classList.toggle('scrolled',window.scrollY>8)};
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+  // mobile nav
+  const tog=document.getElementById('navToggle');
+  const links=document.getElementById('navlinks');
+  tog.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+
+  // reveal on scroll
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        if(e.target.classList.contains('hero-visual')){
+          e.target.querySelectorAll('.hc-fill').forEach(f=>{f.style.transform='scaleX('+(f.dataset.w/100)+')'});
+        }
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.14,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // ensure bars fill on load if hero already visible
+  window.addEventListener('load',()=>{
+    setTimeout(()=>{document.querySelectorAll('.hc-fill').forEach(f=>{f.style.transform='scaleX('+(f.dataset.w/100)+')'})},500);
+  });
+</script>
+</body>
+</html>
